@@ -1,6 +1,10 @@
 import { redirect } from "next/navigation"
 import { cookies } from "next/headers"
+import Link from "next/link"
+import { ArrowLeft, Car } from "lucide-react"
 import LoginForm from "@/components/admin/login-form"
+import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default async function AdminPage() {
   const cookieStore = await cookies()
@@ -11,16 +15,34 @@ export default async function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-white font-bold text-2xl">T</span>
-          </div>
-          <h2 className="text-3xl font-bold text-gray-900">Admin Login</h2>
-          <p className="mt-2 text-sm text-gray-600">Sign in to manage car catalog</p>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b bg-background/95 backdrop-blur">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              Back to Catalog
+            </Button>
+          </Link>
+          <ThemeToggle />
         </div>
-        <LoginForm />
+      </header>
+
+      {/* Main Content */}
+      <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-500 shadow-lg">
+              <Car className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-3xl font-bold">Admin Portal</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Manage your car catalog and brand information
+            </p>
+          </div>
+          <LoginForm />
+        </div>
       </div>
     </div>
   )

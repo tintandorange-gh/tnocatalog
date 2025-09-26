@@ -1,33 +1,37 @@
 import { getBrands } from "@/lib/db"
-import Link from "next/link"
-import Image from "next/image"
+import { Car } from "lucide-react"
+import { BrandCard } from "@/components/brand-card"
 
 export default async function BrandGrid() {
-  const brands = await getBrands()
+  let brands;
+  
+  try {
+    brands = await getBrands()
+  } catch (error) {
+    console.error("Failed to fetch brands:", error)
+    return (
+      <div className="text-center py-12">
+        <Car className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+        <h3 className="text-lg font-semibold mb-2">Unable to load brands</h3>
+        <p className="text-muted-foreground">Please try refreshing the page</p>
+      </div>
+    )
+  }
+
+  if (!brands || brands.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <Car className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+        <h3 className="text-lg font-semibold mb-2">No brands available</h3>
+        <p className="text-muted-foreground">Check back later for new car brands</p>
+      </div>
+    )
+  }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {brands.map((brand) => (
-        <Link
-          key={brand._id}
-          href={`/brand/${brand.slug}`}
-          className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-200 flex flex-col items-center justify-center min-h-[120px]"
-        >
-          {brand.logo ? (
-            <Image
-              src={brand.logo || "/placeholder.svg"}
-              alt={brand.name}
-              width={60}
-              height={60}
-              className="mb-2 object-contain"
-            />
-          ) : (
-            <div className="w-12 h-12 bg-gray-200 rounded-full mb-2 flex items-center justify-center">
-              <span className="text-gray-500 font-semibold">{brand.name.charAt(0)}</span>
-            </div>
-          )}
-          <span className="text-sm font-medium text-gray-900 text-center">{brand.name.toUpperCase()}</span>
-        </Link>
+        <BrandCard key={brand._id} brand={brand} />
       ))}
     </div>
   )
