@@ -1,4 +1,4 @@
-# Tint & Orange - Car Catalog Application 
+# Tint & Orange - Car Catalog Application  
 
 A modern, production-grade car catalog application built with Next.js 14, TypeScript, and Tailwind CSS.
 
