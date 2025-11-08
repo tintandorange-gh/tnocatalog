@@ -67,11 +67,11 @@ export function ModelCard({ model, brandSlug, subBrandSlug }: ModelCardProps) {
                     Dealer: ₹{model.dealerPricing.toLocaleString('en-IN')}
                   </Badge>
                 )}
-                {model.distributorPricing && (
+                {/* {model.distributorPricing && (
                   <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
                     Dist: ₹{model.distributorPricing.toLocaleString('en-IN')}
                   </Badge>
-                )}
+                )} */}
                 {!model.dealerPricing && !model.distributorPricing && (
                   <Badge variant="outline" className="text-xs">
                     View Details
