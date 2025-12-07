@@ -22,7 +22,7 @@ export default function HomePage() {
 					<div className="flex items-center space-x-2 sm:space-x-3">
 						<div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-gradient-to-br from-neutral-100 to-neutral-200">
 							<Image
-								src="https://dashboard.tintandorange.com/_next/image?url=%2Fstatic%2Fassets%2Flogo.png&w=3840&q=75"
+								src="/logo.svg"
 								alt="Tint & Orange"
 								width={40}
 								height={40}
@@ -69,7 +69,7 @@ export default function HomePage() {
 				<div className="text-center mb-12">
 					<div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-neutral-100 to-neutral-200 shadow-lg">
 						<Image
-							src="https://dashboard.tintandorange.com/_next/image?url=%2Fstatic%2Fassets%2Flogo.png&w=3840&q=75"
+							src="/logo.svg"
 							alt="Tint & Orange"
 							width={48}
 							height={48}
